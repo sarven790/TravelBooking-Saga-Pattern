@@ -1,0 +1,21 @@
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  application:
+    name: flight-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/temporal
+    username: temporal
+    password: temporal
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: 'false'
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 9091
+

@@ -1,0 +1,18 @@
+package com.example.flightservice.domain.model.input;
+
+import com.example.flightservice.dao.enums.SeatStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class SeatInput {
+
+    private String no;
+    private SeatStatus seatStatus;
+
+}
