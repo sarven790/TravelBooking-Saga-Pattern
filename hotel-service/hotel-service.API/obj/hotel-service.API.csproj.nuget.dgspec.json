@@ -1,0 +1,310 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.API/hotel-service.API.csproj": {}
+  },
+  "projects": {
+    "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.API/hotel-service.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.API/hotel-service.API.csproj",
+        "projectName": "hotel-service.API",
+        "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.API/hotel-service.API.csproj",
+        "packagesPath": "/Users/sarven/.nuget/packages/",
+        "outputPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sarven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/hotel-service.APPLICATION.csproj": {
+                "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/hotel-service.APPLICATION.csproj"
+              },
+              "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/hotel-service.INFRASTRUCTURE.csproj": {
+                "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/hotel-service.INFRASTRUCTURE.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.25, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/sarven/.dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/hotel-service.APPLICATION.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/hotel-service.APPLICATION.csproj",
+        "projectName": "hotel-service.APPLICATION",
+        "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/hotel-service.APPLICATION.csproj",
+        "packagesPath": "/Users/sarven/.nuget/packages/",
+        "outputPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.APPLICATION/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sarven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj": {
+                "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.Extensions.DependencyModel": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/sarven/.dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj",
+        "projectName": "hotel-service.DOMAIN",
+        "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj",
+        "packagesPath": "/Users/sarven/.nuget/packages/",
+        "outputPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sarven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/sarven/.dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/hotel-service.INFRASTRUCTURE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/hotel-service.INFRASTRUCTURE.csproj",
+        "projectName": "hotel-service.INFRASTRUCTURE",
+        "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/hotel-service.INFRASTRUCTURE.csproj",
+        "packagesPath": "/Users/sarven/.nuget/packages/",
+        "outputPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.INFRASTRUCTURE/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sarven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj": {
+                "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.25, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.25, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.25, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.25, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/sarven/.dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
