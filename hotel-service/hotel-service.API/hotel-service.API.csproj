@@ -14,11 +14,13 @@
 
     <ItemGroup>
         <ProjectReference Include="..\hotel-service.APPLICATION\hotel-service.APPLICATION.csproj" />
+        <ProjectReference Include="..\hotel-service.COMMON\hotel-service.COMMON.csproj" />
         <ProjectReference Include="..\hotel-service.INFRASTRUCTURE\hotel-service.INFRASTRUCTURE.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="exception\enums\" />
+        <Folder Include="common\" />
+        <Folder Include="dto\response\" />
     </ItemGroup>
 
     <ItemGroup>

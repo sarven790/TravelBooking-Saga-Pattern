@@ -1,6 +1,7 @@
 using hotel_service.API.basemodel.response;
 using hotel_service.API.basemodel.response.factory;
-using hotel_service.APPLICATION.model.input;
+using hotel_service.API.constants;
+using hotel_service.API.dto.request;
 using hotel_service.APPLICATION.service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,9 @@ public class HotelController : ControllerBase
     }
 
     [HttpPost("add-hotel")]
-    public async Task<BaseResponse<object>> AddHotel([FromBody] HotelInput hotelInput)
+    public async Task<BaseResponse<object>> AddHotel([FromBody] HotelRequest request)
     {
-        await _hotelService.AddHotel(hotelInput);
-        return _factory.ResponseSuccess("Hotel.Add.Success");
+        await _hotelService.AddHotel(request.ToInput());
+        return _factory.ResponseSuccess(MessageConstants.HotelAddSuccess);
     }
 }

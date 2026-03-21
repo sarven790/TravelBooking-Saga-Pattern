@@ -4,4 +4,13 @@
     <data name="Unhandled.Error" xml:space="preserve">
         <value>An unexpected error occurred</value>
     </data>
+    <data name="Hotel.Add.Success" xml:space="preserve">
+        <value>The hotel has been successfully registered</value>
+    </data>
+    <data name="Room.Add.Success" xml:space="preserve">
+        <value>The room has been successfully registered</value>
+    </data>
+    <data name="Hotel.Not.Found" xml:space="preserve">
+        <value>The hotel you are looking for is not available in the records</value>
+    </data>
 </root>

@@ -37,4 +37,9 @@ public class HotelRepository : IHotelRepository<Hotel>
         _db.Update(entity);
         await _db.SaveChangesAsync(ct);
     }
+
+    public Task<Hotel?> GetHotelByNameAsync(string? Name, CancellationToken ct = default)
+    {
+        return _db.Hotels.FirstOrDefaultAsync(x => x.Name == Name, ct);
+    }
 }

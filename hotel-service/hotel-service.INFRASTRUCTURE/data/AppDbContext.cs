@@ -10,12 +10,13 @@ public class AppDbContext : DbContext
     public DbSet<Hotel> Hotels => Set<Hotel>();
     public DbSet<Room> Rooms => Set<Room>();
     public DbSet<RoomType> RoomTypes => Set<RoomType>();
+    public DbSet<RoomRoomType> RoomRoomTypes => Set<RoomRoomType>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("hotelservice");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        
+
         base.OnModelCreating(modelBuilder);
     }
 }

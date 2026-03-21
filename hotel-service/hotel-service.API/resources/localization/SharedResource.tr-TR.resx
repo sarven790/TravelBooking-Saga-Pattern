@@ -15,4 +15,13 @@
     <data name="Unhandled.Error" xml:space="preserve">
         <value>Beklenmedik bir hata meydana geldi.</value>
     </data>
+    <data name="Hotel.Add.Success" xml:space="preserve">
+        <value>Otel başarıyla kaydedildi.</value>
+    </data>
+    <data name="Room.Add.Success" xml:space="preserve">
+        <value>Oda başarıyla kaydedildi.</value>
+    </data>
+    <data name="Hotel.Not.Found" xml:space="preserve">
+        <value>Aradığınız otel kayıtlarda mevcut değildir.</value>
+    </data>
 </root>

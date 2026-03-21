@@ -2,42 +2,34 @@ using hotel_service.DOMAIN.entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace hotel_service.INFRASTRUCTURE.config;
+namespace hotel_service.INFRASTRUCTURE.data.config;
 
 public class RoomTypeConfig : IEntityTypeConfiguration<RoomType>
 {
-    public void Configure(EntityTypeBuilder<RoomType> entity)
+    public void Configure(EntityTypeBuilder<RoomType> builder)
     {
-        entity.ToTable("ROOM_TYPE","hotelservice");
-        
-        entity.Property(x => x.Id)
+        builder.ToTable("room_type");
+
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
             .HasColumnName("id");
 
-        entity.Property(x => x.RoomName)
-            .HasColumnName("room_name")
-            .HasMaxLength(200)
-            .IsRequired();
+        builder.Property(x => x.TypeName)
+            .HasColumnName("room_type")
+            .HasMaxLength(255);
 
-        entity.Property(x => x.Capacity)
-            .HasColumnName("capacity")
-            .HasMaxLength(4)
-            .IsRequired();
-        
-        entity.Property(x => x.CreatedAt)
+        builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")
-            .HasColumnType("timestamp with time zone")
             .IsRequired();
-        
-        entity.Property(x => x.ModifiedAt)
+
+        builder.Property(x => x.ModifiedAt)
             .HasColumnName("modified_at")
-            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
-        // Relationship: Room 1 - N RoomType
-        entity.HasOne(x => x.Room)
-            .WithMany(h => h.RoomTypes)
-            .HasForeignKey(x => x.RoomId)
+        builder.HasMany(x => x.RoomRoomTypes)
+            .WithOne(x => x.RoomType)
+            .HasForeignKey(x => x.RoomTypeId)
             .OnDelete(DeleteBehavior.Cascade);
-
     }
 }

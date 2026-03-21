@@ -2,39 +2,34 @@ using hotel_service.DOMAIN.entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace hotel_service.INFRASTRUCTURE.config;
+namespace hotel_service.INFRASTRUCTURE.data.config;
 
 public class HotelConfig : IEntityTypeConfiguration<Hotel>
 {
-    public void Configure(EntityTypeBuilder<Hotel> entity)
+    public void Configure(EntityTypeBuilder<Hotel> builder)
     {
-        entity.ToTable("hotel","hotelservice");
-        
-        entity.HasKey(x => x.Id);
+        builder.ToTable("hotel");
 
-        entity.Property(x => x.Id)
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
             .HasColumnName("id");
 
-        entity.Property(x => x.Name)
+        builder.Property(x => x.Name)
             .HasColumnName("name")
-            .HasMaxLength(200)
-            .IsRequired();
+            .HasMaxLength(255);
 
-        entity.Property(x => x.CreatedAt)
+        builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")
-            .HasColumnType("timestamp with time zone")
             .IsRequired();
-        
-        entity.Property(x => x.ModifiedAt)
+
+        builder.Property(x => x.ModifiedAt)
             .HasColumnName("modified_at")
-            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
-        // Relationship: Hotel 1 - N Room (Room entity'n varsa)
-        entity.HasMany(x => x.Rooms)
-            .WithOne(r => r.Hotel)
-            .HasForeignKey(r => r.HotelId)
+        builder.HasMany(x => x.Rooms)
+            .WithOne(x => x.Hotel)
+            .HasForeignKey(x => x.HotelId)
             .OnDelete(DeleteBehavior.Cascade);
-
     }
 }

@@ -53,6 +53,16 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "hotel-service.COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/hotel-service.COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/hotel-service.COMMON.dll": {}
+        }
+      },
       "hotel-service.DOMAIN/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -160,6 +170,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "hotel-service.COMMON/1.0.0": {
+      "type": "project",
+      "path": "../hotel-service.COMMON/hotel-service.COMMON.csproj",
+      "msbuildProject": "../hotel-service.COMMON/hotel-service.COMMON.csproj"
+    },
     "hotel-service.DOMAIN/1.0.0": {
       "type": "project",
       "path": "../hotel-service.DOMAIN/hotel-service.DOMAIN.csproj",
@@ -171,6 +186,7 @@
       "Microsoft.Extensions.DependencyInjection >= 8.0.1",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2",
       "Microsoft.Extensions.DependencyModel >= 8.0.2",
+      "hotel-service.COMMON >= 1.0.0",
       "hotel-service.DOMAIN >= 1.0.0"
     ]
   },
@@ -199,6 +215,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.COMMON/hotel-service.COMMON.csproj": {
+              "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.COMMON/hotel-service.COMMON.csproj"
+            },
             "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj": {
               "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.DOMAIN/hotel-service.DOMAIN.csproj"
             }

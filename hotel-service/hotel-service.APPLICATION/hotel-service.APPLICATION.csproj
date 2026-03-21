@@ -7,6 +7,7 @@
     </PropertyGroup>
    
     <ItemGroup>
+      <ProjectReference Include="..\hotel-service.COMMON\hotel-service.COMMON.csproj" />
       <ProjectReference Include="..\hotel-service.DOMAIN\hotel-service.DOMAIN.csproj" />
     </ItemGroup>
    
@@ -14,6 +15,10 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
       <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
+    </ItemGroup>
+   
+    <ItemGroup>
+      <Folder Include="model\output\builder\" />
     </ItemGroup>
     
 
