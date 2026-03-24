@@ -38,8 +38,8 @@ public class HotelRepository : IHotelRepository<Hotel>
         await _db.SaveChangesAsync(ct);
     }
 
-    public Task<Hotel?> GetHotelByNameAsync(string? Name, CancellationToken ct = default)
+    public Task<Hotel?> GetHotelByNameAsync(string? name, CancellationToken ct = default)
     {
-        return _db.Hotels.FirstOrDefaultAsync(x => x.Name == Name, ct);
+        return _db.Hotels.FirstOrDefaultAsync(x => x.Name == name, ct);
     }
 }

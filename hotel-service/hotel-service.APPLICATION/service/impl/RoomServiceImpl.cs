@@ -25,7 +25,7 @@ public class RoomServiceImpl : IRoomService
 
     private async Task<int> GetHotelIdByNameAsync(string? name, CancellationToken ct = default)
     {
-        var hotel = await _hotelService.GetHotelByName(new HotelInputBuilder()
+        var hotel = await _hotelService.GetHotelIdByName(new HotelInputBuilder()
             .Name(name)
             .Build());
         return hotel.Id;

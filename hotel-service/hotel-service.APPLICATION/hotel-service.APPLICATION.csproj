@@ -16,10 +16,6 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
       <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
     </ItemGroup>
-   
-    <ItemGroup>
-      <Folder Include="model\output\builder\" />
-    </ItemGroup>
     
 
 </Project>

@@ -2,7 +2,9 @@ using hotel_service.API.basemodel.response;
 using hotel_service.API.basemodel.response.factory;
 using hotel_service.API.constants;
 using hotel_service.API.dto.request;
+using hotel_service.APPLICATION.model.input;
 using hotel_service.APPLICATION.service;
+using hotel_service.DOMAIN.entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hotel_service.API.controller;
@@ -26,4 +28,12 @@ public class HotelController : ControllerBase
         await _hotelService.AddHotel(request.ToInput());
         return _factory.ResponseSuccess(MessageConstants.HotelAddSuccess);
     }
+
+    [HttpPost("get-hotel")]
+    public async Task<BaseResponse<Hotel>> GetHotelList([FromBody] HotelInputByName hotelInputByName)
+    {
+        var output = await _hotelService.GetHotelByName(hotelInputByName);
+        return _factory.ResponseSuccess(output);
+    }
+    
 }

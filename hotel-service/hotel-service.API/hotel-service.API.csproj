@@ -20,7 +20,6 @@
 
     <ItemGroup>
         <Folder Include="common\" />
-        <Folder Include="dto\response\" />
     </ItemGroup>
 
     <ItemGroup>

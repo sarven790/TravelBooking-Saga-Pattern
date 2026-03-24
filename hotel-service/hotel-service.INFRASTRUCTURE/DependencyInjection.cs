@@ -31,6 +31,9 @@ public static class DependencyInjection
 
         services.AddScoped<IHotelRepository<Hotel>, HotelRepository>();
         services.AddScoped<IRoomRepository<Room>, RoomRepository>();
+        services.AddScoped<ICountryRepository<Country>, CountryRepository>();
+        services.AddScoped<ICityRepository<City>, CityRepository>();
+        services.AddScoped<IDistrictRepository<District>, DistrictRepository>();
 
         return services;
     }

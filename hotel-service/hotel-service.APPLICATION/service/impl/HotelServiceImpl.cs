@@ -23,7 +23,7 @@ public class HotelServiceImpl : IHotelService
         await _hotelRepository.SaveAsync(entity);
     }
 
-    public async Task<HotelOutputId> GetHotelByName(HotelInput input)
+    public async Task<HotelOutputId> GetHotelIdByName(HotelInput input)
     {
         var entity = await _hotelRepository.GetHotelByNameAsync(input.Name);
         HotelOutputId output = new HotelOutputId();
@@ -33,5 +33,10 @@ public class HotelServiceImpl : IHotelService
         }
         output.Id = entity.Id;
         return output;
+    }
+
+    public async Task<Hotel> GetHotelByName(HotelInputByName input)
+    {
+        throw new NotImplementedException();
     }
 }

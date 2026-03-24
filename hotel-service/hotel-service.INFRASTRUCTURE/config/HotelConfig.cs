@@ -19,6 +19,10 @@ public class HotelConfig : IEntityTypeConfiguration<Hotel>
             .HasColumnName("name")
             .HasMaxLength(255);
 
+        builder.Property(x => x.Location)
+            .HasColumnName("location")
+            .HasMaxLength(255);
+
         builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")
             .IsRequired();

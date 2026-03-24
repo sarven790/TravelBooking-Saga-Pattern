@@ -11,6 +11,9 @@ public class AppDbContext : DbContext
     public DbSet<Room> Rooms => Set<Room>();
     public DbSet<RoomType> RoomTypes => Set<RoomType>();
     public DbSet<RoomRoomType> RoomRoomTypes => Set<RoomRoomType>();
+    public DbSet<Country> Countries => Set<Country>();
+    public DbSet<City> Cities => Set<City>();
+    public DbSet<District> Districts => Set<District>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
