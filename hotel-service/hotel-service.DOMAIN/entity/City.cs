@@ -8,5 +8,7 @@ public class City : BaseEntity
     public Country? Country { get; set; }
     
     public List<District>? Districts { get; set; }
+    public List<HotelDetail>? HotelDetails { get; set; }
+
     
 }

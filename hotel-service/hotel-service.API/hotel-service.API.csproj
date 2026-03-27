@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="12.1.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.25" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
@@ -16,10 +18,6 @@
         <ProjectReference Include="..\hotel-service.APPLICATION\hotel-service.APPLICATION.csproj" />
         <ProjectReference Include="..\hotel-service.COMMON\hotel-service.COMMON.csproj" />
         <ProjectReference Include="..\hotel-service.INFRASTRUCTURE\hotel-service.INFRASTRUCTURE.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="common\" />
     </ItemGroup>
 
     <ItemGroup>

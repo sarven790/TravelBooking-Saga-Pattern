@@ -13,6 +13,7 @@ public abstract class GetLocationOutputMapper
             Id = city.Id,
             Name = city.Name,
             Type = LocationType.CITY.ToString(),
+            CountryCode = city.Country?.Code,
             ParentId = city.CountryId,
             ParentName = city.Country?.Name,
             DisplayText = $"{city.Name}, {city.Country?.Name}"
@@ -26,6 +27,7 @@ public abstract class GetLocationOutputMapper
             Id = district.Id,
             Name = district.Name,
             Type = LocationType.DISTRICT.ToString(),
+            CountryCode = district.City?.Country?.Code,
             ParentId = district.CityId,
             ParentName = district.City?.Name,
             DisplayText = $"{district.Name}, {district.City?.Name}, {district.City?.Country?.Name}"

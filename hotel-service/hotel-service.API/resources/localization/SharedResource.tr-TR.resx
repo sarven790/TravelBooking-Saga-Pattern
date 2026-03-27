@@ -24,4 +24,19 @@
     <data name="Hotel.Not.Found" xml:space="preserve">
         <value>Aradığınız otel kayıtlarda mevcut değildir.</value>
     </data>
+    <data name="Hotel_Invalid.PhoneIs.Required" xml:space="preserve">
+        <value>Telefon numarası zorunludur.</value>
+    </data>
+    <data name="Hotel_Invalid.Phone.Format" xml:space="preserve">
+        <value>Geçersiz telefon numarası girdiniz.</value>
+    </data>
+    <data name="Hotel_Invalid.EmailIs.Required" xml:space="preserve">
+        <value>Email zorunludur.</value>
+    </data>
+    <data name="Hotel_Invalid.Email.Format" xml:space="preserve">
+        <value>Geçersiz email girdiniz.</value>
+    </data>
+    <data name="Hotel_Invalid.Email.Length" xml:space="preserve">
+        <value>Emailler en fazla 255 karakter uzunluğunda olabilir.</value>
+    </data>
 </root>

@@ -24,4 +24,19 @@
     <data name="Hotel.Not.Found" xml:space="preserve">
         <value>The hotel you are looking for is not available in the records.</value>
     </data>
+    <data name="Hotel_Invalid.PhoneIs.Required" xml:space="preserve">
+        <value>Phone number is required.</value>
+    </data>
+    <data name="Hotel_Invalid.Phone.Format" xml:space="preserve">
+        <value>Phone number format is invalid.</value>
+    </data>
+    <data name="Hotel_Invalid.EmailIs.Required" xml:space="preserve">
+        <value>Email is required.</value>
+    </data>
+    <data name="Hotel_Invalid.Email.Format" xml:space="preserve">
+        <value>Email format is invalid</value>
+    </data>
+    <data name="Hotel_Invalid.Email.Length" xml:space="preserve">
+        <value>Email can be at most 255 characters.</value>
+    </data>
 </root>

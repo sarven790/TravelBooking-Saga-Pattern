@@ -1,5 +1,8 @@
 using System.Globalization;
+using FluentValidation;
 using hotel_service.API.basemodel.response.factory;
+using hotel_service.API.common.validator;
+using hotel_service.API.filter;
 using hotel_service.API.middleware;
 using hotel_service.APPLICATION;
 using hotel_service.INFRASTRUCTURE;
@@ -34,11 +37,21 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     };
 });
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers(options =>
+    {
+        options.Filters.Add<FluentValidationFilter>();
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<BaseResponseFactory>();
 builder.Services.AddAuthorization();
+
+builder.Services.AddScoped<BaseResponseFactory>();
+builder.Services.AddScoped<ValidationErrorHelper>();
+builder.Services.AddScoped<FluentValidationFilter>();
+
+builder.Services.AddValidatorsFromAssemblyContaining<HotelRequestValidator>();
 
 builder.Services
     .AddApplication()

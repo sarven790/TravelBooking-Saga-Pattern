@@ -8,6 +8,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
     public DbSet<Hotel> Hotels => Set<Hotel>();
+    public DbSet<HotelDetail> HotelDetails => Set<HotelDetail>();
     public DbSet<Room> Rooms => Set<Room>();
     public DbSet<RoomType> RoomTypes => Set<RoomType>();
     public DbSet<RoomRoomType> RoomRoomTypes => Set<RoomRoomType>();

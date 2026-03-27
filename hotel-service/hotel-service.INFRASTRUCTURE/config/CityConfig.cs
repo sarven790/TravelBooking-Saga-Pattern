@@ -40,5 +40,10 @@ public class CityConfig : IEntityTypeConfiguration<City>
             .WithOne(x => x.City)
             .HasForeignKey(x => x.CityId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(x => x.HotelDetails)
+            .WithOne(x => x.City)
+            .HasForeignKey(x => x.CityId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -19,10 +19,6 @@ public class HotelConfig : IEntityTypeConfiguration<Hotel>
             .HasColumnName("name")
             .HasMaxLength(255);
 
-        builder.Property(x => x.Location)
-            .HasColumnName("location")
-            .HasMaxLength(255);
-
         builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")
             .IsRequired();
@@ -34,6 +30,11 @@ public class HotelConfig : IEntityTypeConfiguration<Hotel>
         builder.HasMany(x => x.Rooms)
             .WithOne(x => x.Hotel)
             .HasForeignKey(x => x.HotelId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasOne(x => x.Detail)
+            .WithOne(x => x.Hotel)
+            .HasForeignKey<HotelDetail>(x => x.HotelId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

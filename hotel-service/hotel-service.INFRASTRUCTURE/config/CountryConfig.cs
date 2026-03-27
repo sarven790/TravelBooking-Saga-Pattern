@@ -31,10 +31,19 @@ public class CountryConfig : IEntityTypeConfiguration<Country>
             .HasColumnName("modified_at")
             .IsRequired();
 
+        builder.HasIndex(x => x.Code)
+            .IsUnique();
+
         builder.HasMany(x => x.Cities)
             .WithOne(x => x.Country)
             .HasForeignKey(x => x.CountryId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(x => x.HotelDetails)
+            .WithOne(x => x.Country)
+            .HasForeignKey(x => x.CountryCode)
+            .HasPrincipalKey(x => x.Code)
+            .OnDelete(DeleteBehavior.Restrict);
 
     }
 }

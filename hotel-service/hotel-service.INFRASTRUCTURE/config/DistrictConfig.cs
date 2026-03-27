@@ -35,5 +35,10 @@ public class DistrictConfig : IEntityTypeConfiguration<District>
             .WithMany(x => x.Districts)
             .HasForeignKey(x => x.CityId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(x => x.HotelDetails)
+            .WithOne(x => x.District)
+            .HasForeignKey(x => x.DistrictId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
