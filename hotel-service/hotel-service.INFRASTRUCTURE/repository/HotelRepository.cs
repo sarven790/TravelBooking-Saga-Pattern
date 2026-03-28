@@ -38,8 +38,22 @@ public class HotelRepository : IHotelRepository<Hotel>
         await _db.SaveChangesAsync(ct);
     }
 
-    public Task<Hotel?> GetHotelByNameAsync(string? name, CancellationToken ct = default)
+    public async Task<Hotel?> GetHotelByNameAsync(string? name, CancellationToken ct = default)
     {
-        return _db.Hotels.FirstOrDefaultAsync(x => x.Name == name, ct);
+        return await _db.Hotels.FirstOrDefaultAsync(x => x.Name == name, ct);
+    }
+
+    public async Task<List<Hotel>> GetHotelList(string name, int districtId, decimal MinPriceValue, decimal MaxPriceValue,
+        CancellationToken ct = default)
+    {
+        return await _db.Hotels
+            .Where(x => x.Name == name)
+            .Include(x => x.Detail)
+                .ThenInclude(x => x.City)
+            .Include(x => x.Detail)
+                .ThenInclude(x => x.District)
+            .Include(x => x.Detail)
+                .ThenInclude(x => x.Country)
+            .ToListAsync<Hotel>(ct);
     }
 }

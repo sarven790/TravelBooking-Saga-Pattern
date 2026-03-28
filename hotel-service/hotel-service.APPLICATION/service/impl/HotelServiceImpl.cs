@@ -1,6 +1,7 @@
 using hotel_service.API.exception;
 using hotel_service.API.exception.errortype;
 using hotel_service.APPLICATION.model.input;
+using hotel_service.APPLICATION.model.mapper;
 using hotel_service.APPLICATION.model.output;
 using hotel_service.DOMAIN.entity;
 using hotel_service.DOMAIN.repository;
@@ -35,8 +36,9 @@ public class HotelServiceImpl : IHotelService
         return output;
     }
 
-    public async Task<Hotel> GetHotelByName(HotelInputByName input)
+    public async Task<GetHotelOutput> GetHotelList(HotelInputByName input)
     {
-        throw new NotImplementedException();
+       var entity = await _hotelRepository.GetHotelList(input.Name,input.DistrictId,input.MinPriceValue,input.MaxPriceValue);
+       return new GetHotelOutput(HotelDtoMapper.ToHotelMapper(entity));
     }
 }

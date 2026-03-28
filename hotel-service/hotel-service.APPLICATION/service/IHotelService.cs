@@ -8,5 +8,5 @@ public interface IHotelService
 {
     Task AddHotel(HotelInput input);
     Task<HotelOutputId> GetHotelIdByName(HotelInput input);
-    Task<Hotel> GetHotelByName(HotelInputByName input);
+    Task<GetHotelOutput> GetHotelList(HotelInputByName input);
 }
