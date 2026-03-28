@@ -30,9 +30,9 @@ public class HotelController : ControllerBase
     }
 
     [HttpPost("get-hotel")]
-    public async Task<BaseResponse<GetHotelResponse>> GetHotelList([FromBody] HotelInputByName hotelInputByName)
+    public async Task<BaseResponse<GetHotelResponse>> GetHotelList([FromBody] HotelRequestByName request)
     {
-        var output = await _hotelService.GetHotelList(hotelInputByName);
+        var output = await _hotelService.GetHotelList(request.ToInput());
         return _factory.ResponseSuccess(GetHotelResponse.ToResponse(output));
     }
     

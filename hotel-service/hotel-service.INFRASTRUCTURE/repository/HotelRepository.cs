@@ -47,7 +47,9 @@ public class HotelRepository : IHotelRepository<Hotel>
         CancellationToken ct = default)
     {
         return await _db.Hotels
-            .Where(x => x.Name == name)
+            .Where(x =>
+                (name != null && x.Name == name) ||
+                (districtId != 0 && x.Detail.DistrictId == districtId))
             .Include(x => x.Detail)
                 .ThenInclude(x => x.City)
             .Include(x => x.Detail)
