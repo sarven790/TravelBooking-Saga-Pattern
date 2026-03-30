@@ -27,6 +27,12 @@ public class RoomBuilder
         return this;
     }
 
+    public RoomBuilder IsAvailable(bool isAvailable)
+    {
+        _room.IsAvailable = isAvailable;
+        return this;
+    }
+
     public RoomBuilder HotelId(int hotelId)
     {
         _room.HotelId = hotelId;

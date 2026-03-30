@@ -18,6 +18,7 @@ public class RoomInput
             .RoomNo(RoomNo)
             .Price(Price)
             .Capacity(Capacity)
+            .IsAvailable(true)
             .RoomRoomTypes(GetRoomRoomTypes(typeIds))
             .Build();
     }

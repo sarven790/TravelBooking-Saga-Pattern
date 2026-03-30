@@ -1,4 +1,7 @@
+using hotel_service.API.basemodel.response;
 using hotel_service.API.basemodel.response.factory;
+using hotel_service.APPLICATION.model.input;
+using hotel_service.APPLICATION.model.output;
 using hotel_service.APPLICATION.service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +19,11 @@ public class ReservationController
         _factory = factory;
         _reservationService = reservationService;
     }
-    
-    
 
+    [HttpPost("create-reservation")]
+    public async Task<BaseResponse<CreateReservationResponse>> CreateReservation([FromBody] CreateReservationRequest request)
+    {
+        var output = await _reservationService.CreateReservation(request.ToInput());
+        return _factory.ResponseSuccess(CreateReservationResponse.ToResponse(output));
+    }
 }

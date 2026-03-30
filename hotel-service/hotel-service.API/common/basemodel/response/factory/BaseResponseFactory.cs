@@ -24,7 +24,7 @@ public class BaseResponseFactory
         return BaseResponseBuilder.Build<object>(true, message);
     }
 
-    public BaseResponse<ErrorResponse> ResponseFail(string messageCode, IBaseErrorType errorType)
+    public BaseResponse<ErrorResponse> ResponseFail(string messageCode, string errorType)
     {
         var localized = _l[messageCode];
         var errorDescription = localized.Value;

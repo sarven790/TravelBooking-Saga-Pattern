@@ -13,10 +13,30 @@ public abstract class HotelDtoMapper
             AddressLine = hotel.Detail?.AddressLine,
             PhoneNumber = hotel.Detail?.PhoneNumber,
             Email = hotel.Detail?.Email,
+            Rooms = ToRoomMapper(hotel.Rooms),
             Country = ToCountryDto(hotel.Detail.Country)
             
         }).ToList();
     }
+
+    private static List<RoomDto> ToRoomMapper(List<Room> rooms)
+    {
+        return rooms.Select(room => new RoomDto
+        {
+            Id = room.Id,
+            RoomNo = room.RoomNo,
+            Price = room.Price,
+            Capacity = room.Capacity,
+            IsAvailable = room.IsAvailable,
+            RoomTypes = ToRoomType(room.RoomRoomTypes)
+        }).ToList();
+    }
+
+    private static List<string> ToRoomType(List<RoomRoomType> roomRoomTypes)
+    {
+        return roomRoomTypes.Select(roomRoomType => roomRoomType.RoomType.TypeName).ToList();
+    }
+    
 
     private static CountryDto ToCountryDto(Country country)
     {

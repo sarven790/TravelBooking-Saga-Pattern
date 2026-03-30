@@ -37,4 +37,12 @@ public class RoomRepository : IRoomRepository<Room>
         _db.Update(entity);
         await _db.SaveChangesAsync(ct);
     }
+
+    public async Task UpdateAvailableById(int id, bool isAvailable, CancellationToken ct = default)
+    {
+        await _db.Rooms
+            .Where(x => x.Id == id)
+            .ExecuteUpdateAsync(setters => setters
+                .SetProperty(x => x.IsAvailable, isAvailable), ct);
+    }
 }

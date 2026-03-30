@@ -28,9 +28,10 @@ public class ResponseExceptionMiddleware
         catch (BusinessException be)
         {
             var code = be.ErrorType.GetCode();
+            var type = be.ErrorType.GetName();
             _logger.LogError("BusinessException occurred: {Code}", code);
 
-            var payload = factory.ResponseFail(code, be.ErrorType);
+            var payload = factory.ResponseFail(code,type);
             await WriteAsJson(context, HttpStatusCode.OK, payload);
         }
         catch (Exception ex)
@@ -38,7 +39,7 @@ public class ResponseExceptionMiddleware
             var err = UnhandledErrorType.UNHANDLED_ERROR_TYPE;
             _logger.LogError(ex, "UnhandledError occurred: {Code}", err.GetCode());
 
-            var payload = factory.ResponseFail(err.GetCode(), err);
+            var payload = factory.ResponseFail(err.GetCode(), err.GetName());
             await WriteAsJson(context, HttpStatusCode.InternalServerError, payload);
         }
     }

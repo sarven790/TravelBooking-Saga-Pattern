@@ -46,16 +46,33 @@ public class HotelRepository : IHotelRepository<Hotel>
     public async Task<List<Hotel>> GetHotelList(string name, int districtId, decimal MinPriceValue, decimal MaxPriceValue,
         CancellationToken ct = default)
     {
-        return await _db.Hotels
-            .Where(x =>
-                (name != null && x.Name == name) ||
-                (districtId != 0 && x.Detail.DistrictId == districtId))
+        var query = _db.Hotels
             .Include(x => x.Detail)
-                .ThenInclude(x => x.City)
+                .ThenInclude(d => d.City)
             .Include(x => x.Detail)
-                .ThenInclude(x => x.District)
+                .ThenInclude(d => d.District)
             .Include(x => x.Detail)
-                .ThenInclude(x => x.Country)
-            .ToListAsync<Hotel>(ct);
+                .ThenInclude(d => d.Country)
+            .Include(x => x.Rooms)
+                .ThenInclude(d => d.RoomRoomTypes)
+                    .ThenInclude(dd => dd.RoomType)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            query = query.Where(x => x.Name == name);
+        }
+
+        if (districtId > 0)
+        {
+            query = query.Where(x => x.Detail.DistrictId == districtId);
+        }
+
+        if (MinPriceValue > 0 && MaxPriceValue > 0)
+        {
+            query = query.Where(x => x.Rooms.Any(r => r.Price >= MinPriceValue && r.Price <= MaxPriceValue));
+        }
+
+        return await query.ToListAsync(ct);
     }
 }

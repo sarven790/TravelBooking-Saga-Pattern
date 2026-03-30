@@ -6,7 +6,7 @@ namespace hotel_service.APPLICATION.service;
 public interface IReservationService
 {
     // hold-reservation => holdId, status ve holdExpiry döner
-    CreateReservationOutput CreateReservation(CreateReservationInput input);
+    Task<CreateReservationOutput> CreateReservation(CreateReservationInput input);
 
     // check-reservation
 

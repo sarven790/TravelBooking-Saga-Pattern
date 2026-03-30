@@ -1,3 +1,4 @@
+using hotel_service.APPLICATION.model.input;
 using hotel_service.APPLICATION.model.input.builder;
 using hotel_service.APPLICATION.model.output.builder;
 using hotel_service.DOMAIN.entity;
@@ -21,6 +22,11 @@ public class RoomServiceImpl : IRoomService
     {
         int hotelId = await GetHotelIdByNameAsync(input.HotelName);
         return await _roomRepository.SaveAsync(input.ToEntity(hotelId, input.TypeIds));
+    }
+
+    public async Task UpdateRoomAvailable(RoomInputById input)
+    {
+        await _roomRepository.UpdateAvailableById(input.Id, input.isAvailable);
     }
 
     private async Task<int> GetHotelIdByNameAsync(string? name, CancellationToken ct = default)

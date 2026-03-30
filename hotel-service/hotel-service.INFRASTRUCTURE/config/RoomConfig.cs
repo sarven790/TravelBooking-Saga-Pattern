@@ -28,6 +28,10 @@ public class RoomConfig : IEntityTypeConfiguration<Room>
             .HasColumnName("capacity")
             .IsRequired();
 
+        builder.Property(x => x.IsAvailable)
+            .HasColumnName("is_available")
+            .IsRequired();
+
         builder.Property(x => x.HotelId)
             .HasColumnName("hotel_id")
             .IsRequired();
