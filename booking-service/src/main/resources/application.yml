@@ -1,0 +1,61 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  application:
+    name: flight-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/temporal
+    username: temporal
+    password: temporal
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: 'false'
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 3000
+            readTimeout: 3000
+
+server:
+  port: 9090
+
+hotel-reservation-service-client:
+  name: hotel-reservation-service
+  url: http://localhost:5141/api/v1/reservation
+  create-reservation: /create-reservation
+flight-pnr-service-client:
+  name: hotel-pnr-service
+  url: localhost:9091/api/v1/pnr
+  create-pnr: /create-pnr
+
+http:
+  connect-timeout-ms: 1000
+  read-timeout-ms: 5000
+
+temporal:
+  # Temporal Server (dev'de genelde localhost:7233)
+  target: localhost:7233
+  namespace: default
+  task-queue: ORDER_SAGA_QUEUE
+
+  # Activity timeouts
+  activity:
+    start-to-close-seconds: 20
+
+  # Retry (genel)
+  retry:
+    initial-interval-seconds: 1
+    backoff-coefficient: 2.0
+    maximum-interval-seconds: 10
+    maximum-attempts: 5
+

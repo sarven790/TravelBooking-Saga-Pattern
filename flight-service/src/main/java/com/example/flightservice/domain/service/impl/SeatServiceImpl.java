@@ -35,6 +35,12 @@ public class SeatServiceImpl implements SeatService {
         String id = seatRepository
                 .getSeatByNoAndStatusIsAvailable(input.getNo());
 
+        if (id == null) {
+            log.error("id boş olduğu için buraya girdii....");
+        } else {
+            log.info("id boş olmadığı için buraya girdi. Id: {}",id);
+        }
+
         var seat = seatRepository.getReferenceById(id);
 
         return SeatOutput.builder()

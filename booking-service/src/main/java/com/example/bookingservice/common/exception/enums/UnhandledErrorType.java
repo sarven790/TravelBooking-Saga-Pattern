@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum UnhandledErrorType implements BaseErrorType{
-    UNHANDLED_ERROR_TYPE("app.product_create.duplicate_brand_model");
+    UNHANDLED_ERROR_TYPE("app.booking_unhandled_error");
 
     private final String code;
 
