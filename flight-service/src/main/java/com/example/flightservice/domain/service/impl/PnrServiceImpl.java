@@ -47,7 +47,7 @@ public class PnrServiceImpl implements PnrService {
         var flight = getFlightByCode(input.getFlightCode());
 
         // 3.  save => flightSeatService
-        Boolean isExecuted = saveFlightService(input,flight,seat,flightHoldId,holdUntil);
+        Boolean isExecuted = Boolean.FALSE; //saveFlightService(input,flight,seat,flightHoldId,holdUntil);
 
         if (!isExecuted) {
             throw new BusinessException(PnrErrorType.FAILED_FLIGHT_HOLD);
@@ -79,6 +79,13 @@ public class PnrServiceImpl implements PnrService {
                 .price(input.getPrice())
                 .build());
         return flightSeatOutput.getIsExecuted();
+    }
+
+    @Override
+    public void cancelPnr(CancelPnrInput input) {
+        flightSeatService.changeFlightSeatStatus(ChangeFlightSeatStatusInput.builder()
+                .flightHoldId(input.getFlightHoldId())
+                .build());
     }
 
     private Seat getSeatByNo(String no) {

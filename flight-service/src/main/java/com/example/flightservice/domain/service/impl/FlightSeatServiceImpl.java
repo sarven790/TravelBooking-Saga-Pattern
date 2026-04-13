@@ -1,13 +1,17 @@
 package com.example.flightservice.domain.service.impl;
 
 import com.example.flightservice.dao.entity.FlightSeat;
+import com.example.flightservice.dao.enums.SeatStatus;
 import com.example.flightservice.dao.repository.FlightSeatRepository;
+import com.example.flightservice.domain.model.input.ChangeFlightSeatStatusInput;
 import com.example.flightservice.domain.model.input.FlightSeatInput;
 import com.example.flightservice.domain.model.output.FlightSeatOutput;
 import com.example.flightservice.domain.service.FlightSeatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -33,4 +37,24 @@ public class FlightSeatServiceImpl implements FlightSeatService {
                 .isExecuted(isExecuted)
                 .build();
     }
+
+    @Override
+    public void changeFlightSeatStatus(ChangeFlightSeatStatusInput input) {
+
+        var entity = getFlightSeatByFlightHoldId(input.getFlightHoldId());
+        if (!Objects.isNull(entity)) {
+            var seat = entity.getSeat();
+            seat.setStatus(SeatStatus.AVAILABLE);
+
+            entity.setStatus(input.getSeatStatus());
+            entity.setSeat(seat);
+            flightSeatRepository.save(entity);
+        }
+
+    }
+
+    private FlightSeat getFlightSeatByFlightHoldId(String flightHoldId) {
+        return flightSeatRepository.findAllByFlightHoldIdEqualsIgnoreCase(flightHoldId).orElse(null);
+    }
+
 }

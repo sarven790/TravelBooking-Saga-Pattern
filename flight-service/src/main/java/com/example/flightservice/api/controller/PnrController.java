@@ -1,5 +1,6 @@
 package com.example.flightservice.api.controller;
 
+import com.example.flightservice.api.dto.request.CancelPnrRequest;
 import com.example.flightservice.api.dto.request.CreatePnrRequest;
 import com.example.flightservice.api.dto.response.CreatePnrResponse;
 import com.example.flightservice.common.base.controller.BaseController;
@@ -32,7 +33,11 @@ public class PnrController extends BaseController {
     //check-pnr
 
 
-
     //cancel-pnr
+    @PostMapping("/cancel-pnr")
+    public BaseResponse<Void> cancelPnr(@RequestBody CancelPnrRequest request) {
+        pnrService.cancelPnr(request.toInput());
+        return responseSuccess("",messageSource);
+    }
 
 }
