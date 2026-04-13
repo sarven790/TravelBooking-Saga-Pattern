@@ -1,6 +1,7 @@
 package com.example.bookingservice.domain.temporal.util;
 
-import com.example.bookingservice.domain.temporal.activity.BookingSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingCompensationSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingForwardSagaActivities;
 import com.example.bookingservice.domain.temporal.activity.SagaStateActivities;
 import io.temporal.activity.ActivityOptions;
 import io.temporal.common.RetryOptions;
@@ -10,13 +11,34 @@ import java.time.Duration;
 
 public class WorkflowUtil {
 
-    public static BookingSagaActivities bookingSagaActivitiesInstance(Duration startToCloseTimeout,
-                                                                      Duration initialInternal,
-                                                                      Double backoffCoefficient,
-                                                                      Duration maximumInternal,
-                                                                      Integer maximumAttempts) {
+    public static BookingForwardSagaActivities bookingSagaForwardActivitiesInstance(Duration startToCloseTimeout,
+                                                                             Duration initialInternal,
+                                                                             Double backoffCoefficient,
+                                                                             Duration maximumInternal,
+                                                                             Integer maximumAttempts) {
         return Workflow.newActivityStub(
-                BookingSagaActivities.class,
+                BookingForwardSagaActivities.class,
+                ActivityOptions.newBuilder()
+                        .setStartToCloseTimeout(startToCloseTimeout)
+                        .setRetryOptions(
+                                RetryOptions.newBuilder()
+                                        .setInitialInterval(initialInternal)
+                                        .setBackoffCoefficient(backoffCoefficient)
+                                        .setMaximumInterval(maximumInternal)
+                                        .setMaximumAttempts(maximumAttempts)
+                                        .build()
+                        )
+                        .build()
+        );
+    }
+
+    public static BookingCompensationSagaActivities bookingCompensationSagaActivities(Duration startToCloseTimeout,
+                                                                                  Duration initialInternal,
+                                                                                  Double backoffCoefficient,
+                                                                                  Duration maximumInternal,
+                                                                                  Integer maximumAttempts) {
+        return Workflow.newActivityStub(
+                BookingCompensationSagaActivities.class,
                 ActivityOptions.newBuilder()
                         .setStartToCloseTimeout(startToCloseTimeout)
                         .setRetryOptions(

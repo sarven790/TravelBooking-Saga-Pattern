@@ -41,12 +41,22 @@ public class BookingServiceImpl implements BookingService {
 
         if (input.getState().equals(State.FLIGHT_CREATE_PNR)) {
             var pnrDto = input.getFlightPnrDto();
-            entity = Booking.builder()
-                    .flightHoldId(pnrDto.getFlightHoldId())
-                    .flightStatus(pnrDto.getPnrStatus().name())
-                    .status(input.getStatus().name())
-                    .currentStep(input.getState().name())
-                    .build();
+
+            entity.setFlightHoldId(pnrDto.getFlightHoldId());
+            entity.setFlightStatus(pnrDto.getPnrStatus().name());
+            entity.setStatus(input.getStatus().name());
+            entity.setCurrentStep(input.getState().name());
+
+
+        }
+        if (input.getState().equals(State.HOTEL_CREATE_RESERVATION)) {
+            var hotelDto = input.getReservationDto();
+
+            entity.setHotelHoldId(hotelDto.getHotelHoldId());
+            entity.setHotelStatus(entity.getHotelStatus());
+            entity.setStatus(input.getStatus().name());
+            entity.setCurrentStep(input.getState().name());
+
         }
 
         bookingRepository.save(entity);
@@ -54,6 +64,15 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void markFailed(String bookingId, String errorCode, String errorMessage) {
+        var entity = getBookingByBookingId(bookingId);
+        entity.setLastErrorCode(errorCode);
+        entity.setLastErrorMessage(errorMessage);
+        entity.setStatus(Status.FAILED.name());
+        bookingRepository.save(entity);
+    }
 
+    @Override
+    public Booking getBookingByBookingId(String bookingId) {
+        return bookingRepository.findAllByBookingIdEqualsIgnoreCase(bookingId).orElse(new Booking());
     }
 }

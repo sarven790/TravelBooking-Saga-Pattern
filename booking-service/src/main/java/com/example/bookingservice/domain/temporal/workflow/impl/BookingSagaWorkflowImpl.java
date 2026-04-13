@@ -3,11 +3,16 @@ package com.example.bookingservice.domain.temporal.workflow.impl;
 
 import com.example.bookingservice.common.exception.ExternalException;
 import com.example.bookingservice.domain.model.enums.State;
+import com.example.bookingservice.domain.model.enums.Status;
 import com.example.bookingservice.domain.model.input.*;
-import com.example.bookingservice.domain.temporal.activity.BookingSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingCompensationSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingForwardSagaActivities;
 import com.example.bookingservice.domain.temporal.activity.SagaStateActivities;
 import com.example.bookingservice.domain.temporal.util.WorkflowUtil;
 import com.example.bookingservice.domain.temporal.workflow.BookingSagaWorkflow;
+import com.example.bookingservice.integration.service.dto.response.ErrorResponse;
+import io.temporal.failure.ActivityFailure;
+import io.temporal.failure.ApplicationFailure;
 import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
 
@@ -17,11 +22,17 @@ public class BookingSagaWorkflowImpl implements BookingSagaWorkflow {
 
     private final Logger log = Workflow.getLogger(BookingSagaWorkflowImpl.class);
 
-   private final BookingSagaActivities activities = WorkflowUtil.bookingSagaActivitiesInstance(
+   private final BookingForwardSagaActivities forwardSagaActivities = WorkflowUtil.bookingSagaForwardActivitiesInstance(
             Duration.ofSeconds(10),
             Duration.ofSeconds(1),
             2.0,
             Duration.ofSeconds(5), 3);
+
+   private final BookingCompensationSagaActivities compensationSagaActivities = WorkflowUtil.bookingCompensationSagaActivities(
+           Duration.ofSeconds(10),
+           Duration.ofSeconds(1),
+           2.0,
+           Duration.ofSeconds(5), 3);
 
     private final SagaStateActivities sagaStateActivities = WorkflowUtil.sagaStateActivitiesInstance(
             Duration.ofSeconds(5), 3);
@@ -44,7 +55,7 @@ public class BookingSagaWorkflowImpl implements BookingSagaWorkflow {
 
             log.info("Booking workflow started. workflowId={}", input.getWorkflowId());
 
-            var hotelOutput = activities.createReservation(CreateReservationInput.builder()
+            var hotelOutput = forwardSagaActivities.createReservation(CreateReservationInput.builder()
                             .roomId(input.getRoomId())
                             .userId(userId)
                             .language(input.getLanguage())
@@ -58,7 +69,7 @@ public class BookingSagaWorkflowImpl implements BookingSagaWorkflow {
                     .reservationDto(hotelOutput)
                     .build());
 
-            var flightOutput = activities.createPnr(CreatePnrInput.builder()
+            var flightOutput = forwardSagaActivities.createPnr(CreatePnrInput.builder()
                             .userId(userId)
                             .flightCode(input.getFlightCode())
                             .seatNo(input.getSeatNo())
@@ -69,29 +80,37 @@ public class BookingSagaWorkflowImpl implements BookingSagaWorkflow {
 
             sagaStateActivities.updateStatus(UpdateStatusInput.builder()
                     .bookingId(bookingId)
-                    .status(hotelOutput.getReservationStatus())
+                    .status(flightOutput.getPnrStatus())
                     .state(State.FLIGHT_CREATE_PNR)
                     .flightPnrDto(flightOutput)
                     .build());
 
-        } catch (Exception e) {
+        } catch (ActivityFailure e) {
             log.error("Workflow failed. bookingId={}, error={}", bookingId, e.getMessage());
 
-            if (e instanceof ExternalException externalException) {
+            if (e.getCause() instanceof ApplicationFailure applicationFailure
+            && ExternalException.class.getName().equals(applicationFailure.getType())) {
 
-                var errorResponse = externalException.getError();
+                var booking = sagaStateActivities.getBookingByBookingId(bookingId);
+
+                ErrorResponse errorResponse = applicationFailure.getDetails().get(ErrorResponse.class);
+                sagaStateActivities.markFailed(bookingId,
+                        errorResponse.getErrorStatus(), errorResponse.getErrorDescription());
 
                 if (Boolean.TRUE.equals(reservationCreated)) {
-                    // call cancel-created-reservation
-                    sagaStateActivities.markFailed(bookingId,
-                            errorResponse.getErrorStatus(),errorResponse.getErrorDescription());
-                    System.out.println("call cancel-created-reservation");
+                    compensationSagaActivities.cancelHotelReservation(CancelReservationInput.builder()
+                            .hotelHoldId(booking.getHotelHoldId())
+                            .language(input.getLanguage())
+                            .build());
                 }
 
                 if (Boolean.TRUE.equals(pnrCreated)) {
-                    // call cancel-created-pnr
-                    System.out.println("call cancel-created-pnr");
+                    compensationSagaActivities.cancelPnr(CancelPnrInput.builder()
+                            .flightHoldId(booking.getFlightHoldId())
+                            .language(input.getLanguage())
+                            .build());
                 }
+
             }
 
             throw e;

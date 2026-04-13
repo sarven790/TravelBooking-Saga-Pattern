@@ -1,6 +1,7 @@
 package com.example.bookingservice.integration.service;
 
 import com.example.bookingservice.integration.config.FeignClientConfiguration;
+import com.example.bookingservice.integration.service.dto.request.CancelPnrClientRequest;
 import com.example.bookingservice.integration.service.dto.request.CreatePnrClientRequest;
 import com.example.bookingservice.integration.service.dto.response.BaseClientResponse;
 import com.example.bookingservice.integration.service.dto.response.CreatePnrClientResponse;
@@ -17,5 +18,9 @@ public interface FlightPnrServiceClient {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     BaseClientResponse<CreatePnrClientResponse> createPnr(@RequestHeader("Accept-Language")String lang,
                                                           CreatePnrClientRequest request);
+
+    @PostMapping(value = "${flight-pnr-service-client.cancel-pnr}")
+    BaseClientResponse<Void> cancelPnr(@RequestHeader("Accept-Language")String lang,
+                                       CancelPnrClientRequest request);
 
 }

@@ -33,10 +33,12 @@ hotel-reservation-service-client:
   name: hotel-reservation-service
   url: http://localhost:5141/api/v1/reservation
   create-reservation: /create-reservation
+  cancel-reservation: /cancel-reservation
 flight-pnr-service-client:
   name: hotel-pnr-service
   url: localhost:9091/api/v1/pnr
   create-pnr: /create-pnr
+  cancel-pnr: /cancel-pnr
 
 http:
   connect-timeout-ms: 1000

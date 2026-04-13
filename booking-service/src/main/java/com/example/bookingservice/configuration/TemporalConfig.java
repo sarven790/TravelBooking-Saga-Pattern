@@ -1,9 +1,11 @@
 package com.example.bookingservice.configuration;
 
 import com.example.bookingservice.domain.service.BookingService;
-import com.example.bookingservice.domain.temporal.activity.BookingSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingCompensationSagaActivities;
+import com.example.bookingservice.domain.temporal.activity.BookingForwardSagaActivities;
 import com.example.bookingservice.domain.temporal.activity.SagaStateActivities;
-import com.example.bookingservice.domain.temporal.activity.impl.BookingSagaActivitiesImpl;
+import com.example.bookingservice.domain.temporal.activity.impl.BookingCompensationSagaActivitiesImpl;
+import com.example.bookingservice.domain.temporal.activity.impl.BookingForwardSagaActivitiesImpl;
 import com.example.bookingservice.domain.temporal.activity.impl.SagaStateActivitiesImpl;
 import com.example.bookingservice.domain.temporal.workflow.impl.BookingSagaWorkflowImpl;
 import com.example.bookingservice.integration.service.FlightPnrServiceClient;
@@ -48,9 +50,18 @@ public class TemporalConfig implements DisposableBean {
     }
 
     @Bean
-    public BookingSagaActivities bookingSagaActivities(HotelReservationClientService hotelClient,
-                                                       FlightPnrServiceClient flightPnrClient) {
-        return new BookingSagaActivitiesImpl(
+    public BookingForwardSagaActivities bookingForwardSagaActivities(HotelReservationClientService hotelClient,
+                                                              FlightPnrServiceClient flightPnrClient) {
+        return new BookingForwardSagaActivitiesImpl(
+                hotelClient,
+                flightPnrClient
+        );
+    }
+
+    @Bean
+    public BookingCompensationSagaActivities bookingCompensationSagaActivities(HotelReservationClientService hotelClient,
+                                                                   FlightPnrServiceClient flightPnrClient) {
+        return new BookingCompensationSagaActivitiesImpl(
                 hotelClient,
                 flightPnrClient
         );
@@ -63,8 +74,9 @@ public class TemporalConfig implements DisposableBean {
 
     @Bean
     public WorkerFactory workerFactory(WorkflowClient client,
-                                       BookingSagaActivities bookingSagaActivities,
+                                       BookingForwardSagaActivities bookingForwardSagaActivities,
                                        SagaStateActivities sagaStateActivities,
+                                       BookingCompensationSagaActivities bookingCompensationSagaActivities,
                                        @Value("${temporal.task-queue}") String taskQueue) {
 
         this.factory = WorkerFactory.newInstance(
@@ -77,8 +89,9 @@ public class TemporalConfig implements DisposableBean {
         worker.registerWorkflowImplementationTypes(BookingSagaWorkflowImpl.class);
 
         worker.registerActivitiesImplementations(
-                bookingSagaActivities,
-                sagaStateActivities
+                bookingForwardSagaActivities,
+                sagaStateActivities,
+                bookingCompensationSagaActivities
         );
 
         factory.start();
