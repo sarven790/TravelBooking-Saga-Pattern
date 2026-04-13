@@ -47,7 +47,7 @@ public class PnrServiceImpl implements PnrService {
         var flight = getFlightByCode(input.getFlightCode());
 
         // 3.  save => flightSeatService
-        Boolean isExecuted = Boolean.FALSE; //saveFlightService(input,flight,seat,flightHoldId,holdUntil);
+        Boolean isExecuted = saveFlightService(input,flight,seat,flightHoldId,holdUntil);
 
         if (!isExecuted) {
             throw new BusinessException(PnrErrorType.FAILED_FLIGHT_HOLD);
