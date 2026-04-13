@@ -39,4 +39,7 @@
     <data name="Hotel_Invalid.Email.Length" xml:space="preserve">
         <value>Emailler en fazla 255 karakter uzunluğunda olabilir.</value>
     </data>
+    <data name="Reservation.Cancel.Success" xml:space="preserve">
+        <value>Reservation başarıyla iptal edildi.</value>
+    </data>
 </root>

@@ -1,3 +1,4 @@
+using hotel_service.API.dto.request;
 using hotel_service.APPLICATION.model.input;
 using hotel_service.APPLICATION.model.output;
 
@@ -9,5 +10,7 @@ public interface IReservationService
     Task<CreateReservationOutput> CreateReservation(CreateReservationInput input);
 
     // check-reservation
+
+    Task CancelReservation(CancelReservationInput input);
 
 }

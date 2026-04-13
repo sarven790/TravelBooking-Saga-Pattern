@@ -33,7 +33,12 @@ public class ReservationRepository : IReservationRepository<Reservation>
 
     public async Task UpdateAsync(Reservation entity, CancellationToken ct = default)
     {
-        _db.Update(entity);
         await _db.SaveChangesAsync(ct);
+    }
+
+    public async Task<Reservation> GetByHeldId(string heldId, CancellationToken ct = default)
+    {
+        return await _db.Reservations.Where(x => x.HeldId == heldId)
+            .FirstAsync(ct);
     }
 }

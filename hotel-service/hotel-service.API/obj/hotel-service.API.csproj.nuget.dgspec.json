@@ -251,7 +251,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.COMMON/hotel-service.COMMON.csproj": {
+                "projectPath": "/Users/sarven/IdeaProjects/TravelBooking-Saga-Pattern/hotel-service/hotel-service.COMMON/hotel-service.COMMON.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

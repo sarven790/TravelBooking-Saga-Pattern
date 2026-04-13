@@ -30,6 +30,11 @@ public class ReservationConfig : IEntityTypeConfiguration<Reservation>
 
         builder.Property(x => x.HotelReservationId)
             .HasColumnName("hotel_reservation_id");
+
+        builder.Property(x => x.ReservationStatus)
+            .HasConversion<string>()
+            .HasColumnName("reservation_status")
+            .IsRequired();
         
         builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")

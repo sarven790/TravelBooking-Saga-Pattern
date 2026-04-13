@@ -39,4 +39,7 @@
     <data name="Hotel_Invalid.Email.Length" xml:space="preserve">
         <value>Email can be at most 255 characters.</value>
     </data>
+    <data name="Reservation.Cancel.Success" xml:space="preserve">
+        <value>Cancel reservation is success.</value>
+    </data>
 </root>

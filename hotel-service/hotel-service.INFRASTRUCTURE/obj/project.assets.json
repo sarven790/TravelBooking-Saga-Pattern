@@ -925,9 +925,22 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "hotel-service.COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/hotel-service.COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/hotel-service.COMMON.dll": {}
+        }
+      },
       "hotel-service.DOMAIN/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "hotel-service.COMMON": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/hotel-service.DOMAIN.dll": {}
         },
@@ -2579,6 +2592,11 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "hotel-service.COMMON/1.0.0": {
+      "type": "project",
+      "path": "../hotel-service.COMMON/hotel-service.COMMON.csproj",
+      "msbuildProject": "../hotel-service.COMMON/hotel-service.COMMON.csproj"
     },
     "hotel-service.DOMAIN/1.0.0": {
       "type": "project",

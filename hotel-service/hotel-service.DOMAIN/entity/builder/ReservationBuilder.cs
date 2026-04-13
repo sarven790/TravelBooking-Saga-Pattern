@@ -1,3 +1,5 @@
+using hotel_service.APPLICATION.model.enums;
+
 namespace hotel_service.DOMAIN.entity.builder;
 
 public class ReservationBuilder
@@ -36,6 +38,12 @@ public class ReservationBuilder
     public ReservationBuilder HotelReservationId(string hotelReservationId)
     {
         _reservation.HotelReservationId = hotelReservationId;
+        return this;
+    }
+
+    public ReservationBuilder ReservationStatus(ReservationStatus reservationStatus)
+    {
+        _reservation.ReservationStatus = reservationStatus;
         return this;
     }
 

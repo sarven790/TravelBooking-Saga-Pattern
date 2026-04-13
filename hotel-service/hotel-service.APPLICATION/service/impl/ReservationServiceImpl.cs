@@ -1,3 +1,4 @@
+using hotel_service.API.dto.request;
 using hotel_service.APPLICATION.model.enums;
 using hotel_service.APPLICATION.model.input;
 using hotel_service.APPLICATION.model.output;
@@ -34,6 +35,18 @@ public class ReservationServiceImpl : IReservationService
         return SetCreateReservationOutput(heldId, holdExpiry);
     }
 
+    public async Task CancelReservation(CancelReservationInput input)
+    {
+
+        Reservation reservation = await _reservationRepository.GetByHeldId(input.HotelHoldId);
+        
+        await _roomService.UpdateRoomAvailable(new RoomInputById(reservation.RoomId,true));
+
+        reservation.ReservationStatus = ReservationStatus.RESERVATION_CANCEL;
+
+        await _reservationRepository.UpdateAsync(reservation);
+    }
+
     private CreateReservationOutput SetCreateReservationOutput(string heldId, DateTime holdExpiry)
     {
         return new CreateReservationOutputBuilder()
@@ -50,6 +63,7 @@ public class ReservationServiceImpl : IReservationService
             .HeldBy(input.UserId)
             .HeldId(heldId)
             .HoldUntil(holdExpiry)
+            .ReservationStatus(ReservationStatus.HOTEL_HELD)
             .Build();
     }
     

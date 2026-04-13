@@ -66,6 +66,9 @@
       "hotel-service.DOMAIN/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "hotel-service.COMMON": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/hotel-service.DOMAIN.dll": {}
         },
